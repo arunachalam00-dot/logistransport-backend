@@ -24,6 +24,10 @@ public class RouteService {
     public Optional<Route> getRouteById(Long id) {
         return routeRepository.findById(id);
     }
+    
+    public Optional<Route> getRouteByShipmentId(String shipmentId) {
+        return routeRepository.findByShipmentId(shipmentId);
+    }
 
     public Route createRoute(Route route) {
         return routeRepository.save(route);

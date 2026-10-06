@@ -56,7 +56,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter{
 		                                null,
 		                                List.of(
 		                                        new SimpleGrantedAuthority(
-		                                                "ROLE_" + role
+		                                        		role.startsWith("ROLE_") ? role : "ROLE_" + role
 		                                        )
 		                                )
 		                        );

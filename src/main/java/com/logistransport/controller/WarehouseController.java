@@ -40,11 +40,11 @@ public class WarehouseController {
 	}
 	
 	@PreAuthorize("hasRole('ADMIN')")
-	@GetMapping("/{id}")
-	public ResponseEntity<?> getWarehouseById(@PathVariable Long id){
+	@GetMapping("/shipment/{shipmentId}")
+	public ResponseEntity<?> getWarehouseByShipmentId(@PathVariable String shipmentId){
 		
-		return warehouseService.getWarehouseById(id).map(ResponseEntity::ok)
-				.orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).body(null));
+		return warehouseService.getWarehouseByShipmentId(shipmentId).map(warehouse -> ResponseEntity.ok((Object) warehouse))
+				.orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).body("Warehouse not found for Shipment Id: " + shipmentId));
 	}
 	
 	@PreAuthorize("hasRole('ADMIN')")

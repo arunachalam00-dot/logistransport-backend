@@ -16,6 +16,9 @@ public class Warehouse {
 	private Long id;
 	
 	@Column(nullable = false)
+	private String shipmentId;
+	
+	@Column(nullable = false)
 	private String warehouseName;
 	
 	@Column(nullable = false)
@@ -31,9 +34,10 @@ public class Warehouse {
 		
 	}
 
-	public Warehouse(Long id, String warehouseName, String location, String managerName, String contactNumber) {
+	public Warehouse(Long id,String shipmentId, String warehouseName, String location, String managerName, String contactNumber) {
 		super();
 		this.id = id;
+		this.shipmentId = shipmentId;
 		this.warehouseName = warehouseName;
 		this.location = location;
 		this.managerName = managerName;
@@ -48,6 +52,14 @@ public class Warehouse {
 		this.id = id;
 	}
 
+	public String getShipmentId() {
+	    return shipmentId;
+	}
+
+	public void setShipmentId(String shipmentId) {
+	    this.shipmentId = shipmentId;
+	}
+	
 	public String getWarehouseName() {
 		return warehouseName;
 	}

@@ -14,6 +14,9 @@ public class Route {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    
+    @Column(nullable = false)
+    private String shipmentId;
 
     @Column(nullable = false)
     private String routeName;
@@ -35,6 +38,7 @@ public class Route {
 
     public Route(
             Long id,
+            String shipmentId,
             String routeName,
             String source,
             String destination,
@@ -55,6 +59,14 @@ public class Route {
 
     public void setId(Long id) {
         this.id = id;
+    }
+    
+    public String getShipmentId() {
+        return shipmentId;
+    }
+
+    public void setShipmentId(String shipmentId) {
+        this.shipmentId = shipmentId;
     }
 
     public String getRouteName() {

@@ -25,6 +25,10 @@ public class DeliveryService {
         return deliveryRepository.findById(id);
     }
 	
+	public Optional<Delivery> getDeliveryByShipmentId(String shipmentId) {
+	    return deliveryRepository.findByShipmentId(shipmentId);
+	}
+	
 	public Delivery createDelivery(Delivery delivery) {
         return deliveryRepository.save(delivery);
     }

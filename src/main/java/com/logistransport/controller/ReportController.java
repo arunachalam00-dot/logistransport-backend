@@ -103,9 +103,9 @@ public class ReportController {
          );
          
          report.put(
-        		 "deliverd",
+        		 "delivered",
         		 (long) shipmentRepository
-        		 .findByStatus("Deliverd")
+        		 .findByStatus("Delivered")
         		 .size()
         		 );
          

@@ -42,17 +42,17 @@ public class RouteController {
     }
 
     @PreAuthorize("hasRole('ADMIN')")
-    @GetMapping("/{id}")
-    public ResponseEntity<?> getRouteById(
-            @PathVariable Long id) {
+    @GetMapping("/shipment/{shipmentId}")
+    public ResponseEntity<?> getRouteByShipmentId(
+            @PathVariable String shipmentId) {
 
         return routeService
-                .getRouteById(id)
-                .map(ResponseEntity::ok)
+                .getRouteByShipmentId(shipmentId)
+                .map(route -> ResponseEntity.ok((Object) route))
                 .orElseGet(() ->
                         ResponseEntity
                                 .status(HttpStatus.NOT_FOUND)
-                                .body(null)
+                                .body("Route not found for Shipment Id: " + shipmentId)
                 );
     }
 

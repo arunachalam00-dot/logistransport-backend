@@ -23,7 +23,7 @@ import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 @RestController
 @RequestMapping("/api/deliveries")
 @CrossOrigin(origins = "http://localhost:5173")
-@SecurityRequirement(name = "Bearer Auth")
+@SecurityRequirement(name = "bearerAuth")
 public class DeliveryController {
 
     private final DeliveryService deliveryService;
@@ -42,17 +42,17 @@ public class DeliveryController {
     }
 
     @PreAuthorize("hasRole('ADMIN')")
-    @GetMapping("/{id}")
-    public ResponseEntity<?> getDeliveryById(
-            @PathVariable Long id) {
+    @GetMapping("/shipment/{shipmentId}")
+    public ResponseEntity<?> getDeliveryByShipmentId(
+            @PathVariable String shipmentId) {
 
         return deliveryService
-                .getDeliveryById(id)
-                .map(ResponseEntity::ok)
+                .getDeliveryByShipmentId(shipmentId)
+                .map(delivery -> ResponseEntity.ok((Object) delivery))
                 .orElseGet(() ->
                         ResponseEntity
                                 .status(HttpStatus.NOT_FOUND)
-                                .body(null)
+                                .body("Delivery not found for Shipment Id: " + shipmentId)
                 );
     }
 

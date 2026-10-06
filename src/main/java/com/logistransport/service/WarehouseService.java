@@ -22,9 +22,12 @@ public class WarehouseService {
 		return warehouseRepository.findAll();
 	}
 
-	
 	public Optional<Warehouse> getWarehouseById(Long id){
-		return warehouseRepository.findById(id);
+	    return warehouseRepository.findById(id);
+	}
+	
+	public Optional<Warehouse> getWarehouseByShipmentId(String shipmentId){
+		return warehouseRepository.findByShipmentId(shipmentId);
 	}
 	
 	public Warehouse createWarehouse(Warehouse warehouse) {
