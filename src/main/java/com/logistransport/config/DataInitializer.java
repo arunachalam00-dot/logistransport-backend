@@ -22,9 +22,9 @@ public class DataInitializer {
 		
 		return args -> {
 			
-			if (userRepository.findByEmail("admin").isEmpty()) {
+			if (userRepository.findByEmail("admin@gmail.com").isEmpty()) {
 				
-				User admin = new User("admin",
+				User admin = new User("admin@gmail.com",
 						passwordEncoder.encode("admin123"),
 						Role.ADMIN);
 				
