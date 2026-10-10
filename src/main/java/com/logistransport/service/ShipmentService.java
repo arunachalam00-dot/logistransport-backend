@@ -34,9 +34,15 @@ public class ShipmentService {
         return shipmentRepository
                 .findByTrackingNumber(trackingNumber);
     }
+    
+    public Optional<Shipment> getShipmentByShipmentId(
+            String shipmentId) {
+        return shipmentRepository.findByShipmentId(shipmentId);
+    }
 	
 	//Create Shipment
 	public Shipment createShipment(Shipment shipment) {
+	    
 		return shipmentRepository.save(shipment);
 	}
 	
@@ -50,6 +56,8 @@ public class ShipmentService {
 			Shipment shipment=optionalShipment.get();
 			
 			shipment.setTrackingNumber(shipmentDetails.getTrackingNumber());
+			
+			shipment.setShipmentId(shipmentDetails.getShipmentId());
 			
 			shipment.setSenderName(shipmentDetails.getSenderName());
 			

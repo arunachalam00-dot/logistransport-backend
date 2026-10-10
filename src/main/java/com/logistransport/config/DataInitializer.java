@@ -22,14 +22,23 @@ public class DataInitializer {
 		
 		return args -> {
 			
-			if (userRepository.findByEmail("admin@gmail.com").isEmpty()) {
+			if (userRepository.findByEmail("admin").isEmpty()) {
 				
-				User admin = new User("admin@gmail.com",
+				User admin = new User("admin",
 						passwordEncoder.encode("admin123"),
 						Role.ADMIN);
 				
 				userRepository.save(admin);
 			}
+			
+           if (userRepository.findByEmail("admin2@gmail.com").isEmpty()) {
+				
+				User admin2 = new User("admin2@gmail.com",
+						passwordEncoder.encode("admin123"),
+						Role.ADMIN);
+				
+				userRepository.save(admin2);
+			}     
 		
 		
 		if (userRepository.findByEmail("customer@gmail.com").isEmpty()) {

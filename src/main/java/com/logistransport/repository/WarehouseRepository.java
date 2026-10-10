@@ -8,6 +8,6 @@ import com.logistransport.model.Warehouse;
 
 public interface WarehouseRepository extends JpaRepository<Warehouse, Long> {
 	
-	Optional<Warehouse> findByShipmentId(String shipmentId);
+	Optional<Warehouse> findByShipment_ShipmentId(String shipmentId);
 
 }

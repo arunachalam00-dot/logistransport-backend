@@ -5,6 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -15,8 +17,9 @@ public class Warehouse {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(nullable = false)
-	private String shipmentId;
+	@ManyToOne
+	@JoinColumn(name = "shipment_id" , referencedColumnName = "shipment_id" , nullable = false)
+	private Shipment shipment;
 	
 	@Column(nullable = false)
 	private String warehouseName;
@@ -34,10 +37,10 @@ public class Warehouse {
 		
 	}
 
-	public Warehouse(Long id,String shipmentId, String warehouseName, String location, String managerName, String contactNumber) {
+	public Warehouse(Long id,Shipment shipment, String warehouseName, String location, String managerName, String contactNumber) {
 		super();
 		this.id = id;
-		this.shipmentId = shipmentId;
+		this.shipment = shipment;
 		this.warehouseName = warehouseName;
 		this.location = location;
 		this.managerName = managerName;
@@ -52,12 +55,12 @@ public class Warehouse {
 		this.id = id;
 	}
 
-	public String getShipmentId() {
-	    return shipmentId;
+	public Shipment getShipment() {
+	    return shipment;
 	}
 
-	public void setShipmentId(String shipmentId) {
-	    this.shipmentId = shipmentId;
+	public void setShipment(Shipment shipment) {
+	    this.shipment = shipment;
 	}
 	
 	public String getWarehouseName() {

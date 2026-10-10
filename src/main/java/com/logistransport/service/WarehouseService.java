@@ -5,17 +5,20 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import com.logistransport.model.Shipment;
 import com.logistransport.model.Warehouse;
+import com.logistransport.repository.ShipmentRepository;
 import com.logistransport.repository.WarehouseRepository;
 
 @Service
 public class WarehouseService {
 	
-	public final WarehouseRepository warehouseRepository;
+	private final WarehouseRepository warehouseRepository;
+	private final ShipmentRepository shipmentRepository;
 
-	public WarehouseService(WarehouseRepository warehouseRepository) {
-		super();
+	public WarehouseService(WarehouseRepository warehouseRepository, ShipmentRepository shipmentRepository) {
 		this.warehouseRepository = warehouseRepository;
+		this.shipmentRepository = shipmentRepository;
 	}
 	
 	public List<Warehouse> getAllWarehouses(){
@@ -27,10 +30,19 @@ public class WarehouseService {
 	}
 	
 	public Optional<Warehouse> getWarehouseByShipmentId(String shipmentId){
-		return warehouseRepository.findByShipmentId(shipmentId);
+		return warehouseRepository.findByShipment_ShipmentId(shipmentId);
 	}
 	
 	public Warehouse createWarehouse(Warehouse warehouse) {
+		
+		Shipment shipment = shipmentRepository.findById(
+			    warehouse.getShipment().getId()
+			).orElseThrow(
+			    () -> new RuntimeException("Shipment Not Found")
+			);
+
+			warehouse.setShipment(shipment);
+			
 		return warehouseRepository.save(warehouse);
 	}
 	

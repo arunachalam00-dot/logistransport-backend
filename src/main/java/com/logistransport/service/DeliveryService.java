@@ -6,15 +6,19 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.logistransport.model.Delivery;
+import com.logistransport.model.Shipment;
 import com.logistransport.repository.DeliveryRepository;
+import com.logistransport.repository.ShipmentRepository;
 
 @Service
 public class DeliveryService {
 
 	private final DeliveryRepository deliveryRepository;
+	private final ShipmentRepository shipmentRepository;
 
-	public DeliveryService(DeliveryRepository deliveryRepository) {
+	public DeliveryService(DeliveryRepository deliveryRepository, ShipmentRepository shipmentRepository) {
 		this.deliveryRepository = deliveryRepository;
+		this.shipmentRepository = shipmentRepository;
 	}
 	
 	public List<Delivery> getAllDeliveries() {
@@ -26,10 +30,15 @@ public class DeliveryService {
     }
 	
 	public Optional<Delivery> getDeliveryByShipmentId(String shipmentId) {
-	    return deliveryRepository.findByShipmentId(shipmentId);
+	    return deliveryRepository.findByShipment_ShipmentId(shipmentId);
 	}
 	
 	public Delivery createDelivery(Delivery delivery) {
+		String shipmentId = delivery.getShipment().getShipmentId();
+		
+		Shipment shipment = shipmentRepository.findByShipmentId(shipmentId)
+				                .orElseThrow(() -> new RuntimeException("Shipment Not Found"));
+		delivery.setShipment(shipment);
         return deliveryRepository.save(delivery);
     }
 	
@@ -45,9 +54,12 @@ public class DeliveryService {
             Delivery delivery =
                     optionalDelivery.get();
 
-            delivery.setShipmentId(
-                    deliveryDetails.getShipmentId()
-            );
+            String shipmentId = deliveryDetails.getShipment().getShipmentId();
+
+            Shipment shipment = shipmentRepository.findByShipmentId(shipmentId)
+                    .orElseThrow(() -> new RuntimeException("Shipment Not Found"));
+
+            delivery.setShipment(shipment);
 
             delivery.setDeliveryPerson(
                     deliveryDetails.getDeliveryPerson()
