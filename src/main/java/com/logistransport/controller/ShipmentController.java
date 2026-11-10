@@ -29,7 +29,7 @@ import com.logistransport.service.ShipmentService;
 
 @RestController
 @RequestMapping("/api/shipments")
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = {"http://localhost:5173","http://localhost:5174"})
 @SecurityRequirement(name = "bearerAuth")
 public class ShipmentController {
 
