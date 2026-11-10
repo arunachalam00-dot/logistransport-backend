@@ -72,7 +72,8 @@ public class SecurityConfig {
             List.of(
                 "http://localhost:5173",
                 "http://localhost:5174",
-                "https://*.onrender.com"
+                "https://*.onrender.com",
+                "https://logistransport-frontend-brown.vercel.app"
             )
         );
 
