@@ -35,19 +35,6 @@ public class AuthService {
 			throw new RuntimeException("Invalid Email or Password");
 		}
 		
-//		Role requestedRole;
-//		
-//		try {
-//			requestedRole= Role.valueOf(request.getRole().toUpperCase());
-//		}
-//		
-//		catch(Exception e) {
-//			throw new RuntimeException("Invalid Role");
-//		}
-//		
-//		if(user.getRole() != requestedRole) {
-//			throw new RuntimeException("Role does not Match");
-//		}
 		
 		String token = jwtService.generateToken(user.getEmail(), user.getRole().name());
 		

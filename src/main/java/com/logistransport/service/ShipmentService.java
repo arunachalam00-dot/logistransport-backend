@@ -63,6 +63,8 @@ public class ShipmentService {
 			
 			shipment.setReceiverName(shipmentDetails.getReceiverName());
 			
+			shipment.setMobileNumber(shipmentDetails.getMobileNumber());
+			
 			shipment.setSource(shipmentDetails.getSource());
 			
 			shipment.setDestination(shipmentDetails.getDestination());

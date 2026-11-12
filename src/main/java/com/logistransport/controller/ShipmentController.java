@@ -103,6 +103,7 @@ public class ShipmentController {
      shipmentDetails.put("trackingNumber", shipment.getTrackingNumber());
      shipmentDetails.put("senderName", shipment.getSenderName());
      shipmentDetails.put("receiverName", shipment.getReceiverName());
+     shipmentDetails.put("mobileNumber", shipment.getMobileNumber());
      shipmentDetails.put("source", shipment.getSource());
      shipmentDetails.put("destination", shipment.getDestination());
      shipmentDetails.put("status", shipment.getStatus());

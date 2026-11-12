@@ -27,6 +27,9 @@ public class Shipment {
 	@Column(nullable = false)
 	private String receiverName;
 	
+	@Column(name ="mobile_number", nullable = false)
+	private String mobileNumber;
+	
 	@Column(nullable = false)
 	private String source;
 	
@@ -40,7 +43,7 @@ public class Shipment {
 		
 	}
 
-	public Shipment(Long id, String trackingNumber, String shipmentId , String senderName, String receiverName, String source,
+	public Shipment(Long id, String trackingNumber, String shipmentId , String senderName, String receiverName, String mobileNumber, String source,
 			String destination, String status) {
 		super();
 		this.id = id;
@@ -48,6 +51,7 @@ public class Shipment {
 		this.shipmentId= shipmentId;
 		this.senderName = senderName;
 		this.receiverName = receiverName;
+		this.mobileNumber = mobileNumber;
 		this.source = source;
 		this.destination = destination;
 		this.status = status;
@@ -91,6 +95,14 @@ public class Shipment {
 
 	public void setReceiverName(String receiverName) {
 		this.receiverName = receiverName;
+	}
+	
+	public String getMobileNumber() {
+		return mobileNumber;
+	}
+	
+	public void setMobileNumber(String mobileNumber) {
+		this.mobileNumber = mobileNumber;
 	}
 
 	public String getSource() {
