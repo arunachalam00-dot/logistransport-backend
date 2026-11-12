@@ -55,7 +55,7 @@ public class ShipmentService {
 		if(optionalShipment.isPresent()) {
 			Shipment shipment=optionalShipment.get();
 			
-			shipment.setTrackingNumber(shipmentDetails.getTrackingNumber());
+		//	shipment.setTrackingNumber(shipmentDetails.getTrackingNumber());
 			
 			shipment.setShipmentId(shipmentDetails.getShipmentId());
 			

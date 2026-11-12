@@ -1,5 +1,8 @@
 package com.logistransport.model;
 
+import org.hibernate.generator.EventType;
+import org.hibernate.annotations.Generated;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -15,7 +18,8 @@ public class Shipment {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(nullable = false)
+	@Generated(event = EventType.INSERT)
+	@Column(name ="tracking_number", insertable = false , updatable = false)
 	private String trackingNumber;
 	
 	@Column(name ="shipment_id",nullable = false, unique = true)
